@@ -4,7 +4,15 @@ module.exports = {
         "./components/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            transitionProperty: {
+                "width": "width",
+                "backdrop": "backdrop-filter"
+            },
+            fontFamily: {
+                "title" : ["Amatic SC"]
+            }
+        },
     },
     plugins: [require("@tailwindcss/typography")],
 };

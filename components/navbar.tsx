@@ -1,18 +1,24 @@
 import Link from "next/link";
 import Sidebar from "./sidebar";
 import { useState } from "react";
-export default function Navbar() {
+import { MenuIcon } from "@heroicons/react/outline";
+export default function Navbar(props: { className?: string }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const triggerSidebar = () => {
+        console.log("Triggered!!");
         setIsOpen(!isOpen);
     };
     return (
         <>
-            <Sidebar setIsOpen={setIsOpen} className={`${isOpen ? "w-screen h-screen absolute":"w-0 hidden h-0"}`} />
-            <nav className="flex flex-row w-screen h-8 bg-slate-500">
-                <h1>FauxOpus</h1>
-                <ul className="flex flex-row">
+            <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+            <nav
+                className={`${props.className} fixed flex flex-row items-center justify-between w-screen px-6 pt-2 text-xl align-middle dark:bg-slate-700`}
+            >
+                <h1 className="text-3xl sm:underline font-title decoration-wavy decoration-indigo-500">
+                    Simon Sardorf
+                </h1>
+                <ul className="flex-row hidden sm:flex">
                     <li>
                         <Link href="/">Latest </Link>
                     </li>
@@ -20,7 +26,9 @@ export default function Navbar() {
                         <Link href="/">Latest </Link>
                     </li>
                 </ul>
-                <button onClick={triggerSidebar} className="w-64 h-64 bg-green-500 sm:hidden"/>
+                <button onClick={triggerSidebar}>
+                    <MenuIcon className="w-12 sm:hidden" />
+                </button>
             </nav>
         </>
     );

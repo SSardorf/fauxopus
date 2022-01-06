@@ -5,6 +5,7 @@ type boolFunction = (a: boolean) => void;
 export default function Sidebar(props: {
     className?: string;
     setIsOpen: boolFunction;
+    isOpen: boolean;
 }) {
     const handleOnClick = () => {
         alert("Hi!");
@@ -12,19 +13,14 @@ export default function Sidebar(props: {
     return (
         <>
             <div
-                className={`${props.className} flex flex-row justify-between h-screen gap-6 bg-white/30 backdrop-blur-sm`}
+                className={`fixed z-40 h-screen bg-slate-800 transition-width flex flex-row ${
+                    props.isOpen ? "w-screen" : "w-0"
+                }`}
             >
-                <div className="flex flex-col gap-8 mt-20">
-                    <h1 className="ml-4 text-4xl">Home</h1>
-                    <h1 className="ml-4 text-4xl">Blog</h1>
-                    <h1 className="pl-6 ml-4 text-3xl">Latest</h1>
-                    <h1 className="pl-6 ml-4 text-3xl">Coding</h1>
-                    <h1 className="pl-6 ml-4 text-3xl">Investing</h1>
-                    <h1 className="pl-6 ml-4 text-3xl">Data Science/ML</h1>
-                </div>
+                
                 <button
                     onClick={() => props.setIsOpen(false)}
-                    className="w-16 h-16 bg-gray-500"
+                    className={`w-16 h-16 bg-gray-500 transition-opacity duration-700 ${props.isOpen ? "opacity-100" : "opacity-0"}`}
                 />
             </div>
         </>
