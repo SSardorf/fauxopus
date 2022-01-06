@@ -5,19 +5,29 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import Navbar from "../../components/navbar";
+import Head from "next/head";
 
-
-const blog = (props) => {
+const blog = (props: { posts: any[] }) => {
     return (
-        <div>
-            <h1 className="bg-red-400"> Hello! </h1>
-            {props.posts.map((post) => (
-                <div>
-                    <h1>{post.data.title}</h1>
-                    <p className="prose">{post.content}</p>
-                </div>
-            ))}
-        </div>
+        <>
+            <Head>
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap"
+                    rel="stylesheet"
+                />
+            </Head>
+            <Navbar />
+            <div className="pt-16 dark:text-white dark:bg-slate-700">
+                {props.posts.map((post, index) => (
+                    <div className="dark:text-white" key={index}>
+                        <h1>{post.data.title}</h1>
+                        <img src={post.data.image} />
+                        <p className="prose dark:prose-invert">{post.content}</p>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
@@ -32,8 +42,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
             filePath,
         };
     });
-    console.log("yeet")
-    console.log(posts)
     return { props: { posts } };
 };
 
