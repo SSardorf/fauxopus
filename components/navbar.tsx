@@ -20,7 +20,7 @@ export default function Navbar() {
                         <Link href="/">Latest </Link>
                     </li>
                 </ul>
-                <button onClick={triggerSidebar} className="w-64 h-64 bg-green-500"/>
+                <button onClick={triggerSidebar} className="w-64 h-64 bg-green-500 sm:hidden"/>
             </nav>
         </>
     );

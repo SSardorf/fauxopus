@@ -7,11 +7,10 @@ import matter from "gray-matter";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import Navbar from "../../components/navbar";
 
-
-const blog = (props: { posts: any[]; }) => {
+const blog = (props: { posts: any[] }) => {
     return (
-        <>
-        <Navbar />
+        <div className="">
+            <Navbar />
             <h1 className="bg-red-400"> Hello! </h1>
             {props.posts.map((post, index) => (
                 <div key={index}>
@@ -19,7 +18,7 @@ const blog = (props: { posts: any[]; }) => {
                     <p className="prose">{post.content}</p>
                 </div>
             ))}
-        </>
+        </div>
     );
 };
 
