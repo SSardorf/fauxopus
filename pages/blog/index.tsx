@@ -19,6 +19,7 @@ const blog = (props: { posts: any[] }) => {
             </Head>
             <Navbar />
             <div className="pt-16 dark:text-white dark:bg-slate-700">
+                <h1 className="text-2xl text-teal-200">Recently Published</h1>
                 {props.posts.map((post, index) => (
                     <div className="dark:text-white" key={index}>
                         <h1>{post.data.title}</h1>
